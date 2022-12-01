@@ -1,9 +1,8 @@
-import { findTopThreeElves } from '../index.js';
+import { findTopThreeElves } from '../index.js'
 
 describe('findTopThreeElves', function () {
-
-  describe('When giving an easy two elves file', function() {
-    it('should find the good max', function() {
+  describe('When giving an easy two elves file', function () {
+    it('should find the good max', function () {
       // --- GIVEN
       const inputPath = './__tests__/inputOne.txt'
 
@@ -13,7 +12,7 @@ describe('findTopThreeElves', function () {
       // --- THEN
       expect(biggestThreeElves).toEqual({
         topThree: [2000, 1000],
-        totalForThem: 3000
+        totalForThem: 3000,
       })
     })
   })
@@ -49,5 +48,4 @@ describe('findTopThreeElves', function () {
       })
     })
   })
-
 })

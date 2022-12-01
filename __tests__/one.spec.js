@@ -1,7 +1,6 @@
-import { findBiggestElf } from '../index.js';
+import { findBiggestElf } from '../index.js'
 
 describe('findBiggestElf', function () {
-
   describe('When giving an easy two elves file', function () {
     it('should find the good max', function () {
       // --- GIVEN
@@ -12,7 +11,7 @@ describe('findBiggestElf', function () {
 
       // --- THEN
       expect(biggestElf).toEqual({
-        totalRation: 2000
+        totalRation: 2000,
       })
     })
   })
@@ -27,7 +26,7 @@ describe('findBiggestElf', function () {
 
       // --- THEN
       expect(biggestElf).toEqual({
-        totalRation: 5000
+        totalRation: 5000,
       })
     })
   })
@@ -42,9 +41,8 @@ describe('findBiggestElf', function () {
 
       // --- THEN
       expect(biggestElf).toEqual({
-        totalRation: 70698
+        totalRation: 70698,
       })
     })
   })
-
 })
