@@ -6,10 +6,12 @@ export function computeTotalScore(inputPath) {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
   const content = fs.readFileSync(path.join(__dirname, inputPath), 'utf-8')
   const rounds = content.split('\n')
-  console.log('rounds', rounds)
   return rounds.reduce((accu, oneRound) => {
     if (!oneRound) return accu
-    return accu + computeRoundScore(oneRound)
+    // Part one:
+    // return accu + computeRoundScore(oneRound)
+    // Part two:
+    return accu + chooseWhatToPlayAndComputeScore(oneRound)
   }, 0)
 }
 
@@ -40,4 +42,23 @@ export function computeRoundScore(roundLine) {
   const myPlay = roundLine.split(' ')[1]
   const pointForPlay = rockPaperScissorsScore[myPlay]
   return roundScore + pointForPlay
+}
+
+export function chooseWhatToPlayAndComputeScore(roundLine) {
+  const [hisLetter, myLetter] = roundLine.split(' ')
+  const needsToPlay = findWhatToPlay(hisLetter, myLetter)
+  return computeRoundScore(`${hisLetter} ${needsToPlay}`)
+}
+
+const endScore = {
+  'X': LOSE,
+  'Y': DRAW,
+  'Z': WIN,
+}
+
+function findWhatToPlay(hisLetter, myLetter) {
+  const whatToPlay = Object.entries(winOrLose).find(([roundLine, score]) => {
+    return roundLine.split(' ')[0] === hisLetter && score === endScore[myLetter]
+  })
+  return whatToPlay[0].split(' ')[1]
 }
