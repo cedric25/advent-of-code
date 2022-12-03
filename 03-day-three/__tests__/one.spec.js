@@ -10,7 +10,20 @@ describe('computeSomething', function () {
       const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).toEqual(-1)
+      expect(totalScore).toEqual(157)
+    })
+  })
+
+  describe('When giving the real input!', function () {
+    it('should get the right result', function () {
+      // --- GIVEN
+      const inputPath = './__tests__/realInput.txt'
+
+      // --- WHEN
+      const totalScore = computeSomething(inputPath)
+
+      // --- THEN
+      expect(totalScore).toEqual(7428)
     })
   })
 })
