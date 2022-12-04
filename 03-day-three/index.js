@@ -5,16 +5,18 @@ import * as url from 'node:url'
 export function computeSomething(inputPath) {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
   const content = fs.readFileSync(path.join(__dirname, inputPath), 'utf-8').trim()
-  const lines = content.split('\n')
+  let lines = content.split('\n')
   // console.log('lines', lines)
   let sum = 0
-  for (const line of lines) {
-    const halfOne = line.substring(0, line.length / 2)
-    console.log('halfOne', halfOne)
-    const halfTwo = line.substring(line.length / 2, line.length)
-    console.log('halfTwo', halfTwo)
-    for (const letterOne of halfOne.split('')) {
-      if (halfTwo.includes(letterOne)) {
+  for (let i = 0; i < lines.length - 1; i+=3) {
+    const lineOne = lines[i]
+    console.log('-> lineOne', lineOne)
+    if (!lineOne) {
+      break
+    }
+    console.log('lines[1]', lines[i+1]);
+    for (const letterOne of lineOne.split('')) {
+      if (lines[i+1].includes(letterOne) && lines[i+2].includes(letterOne)) {
         const letterScore = getLetterScore(letterOne)
         console.log('letterScore', letterScore)
         sum += letterScore
