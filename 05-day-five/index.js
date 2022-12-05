@@ -12,7 +12,6 @@ export function computeSomething(inputPath) {
   for (const line of lines) {
     if (line.startsWith(' 1')) {
       stacksCount = Number(line[line.length - 1])
-      console.log('stacksCount', stacksCount)
       stacks = [...Array(stacksCount + 1).keys()].map(k => [])
       break
     }
@@ -22,16 +21,14 @@ export function computeSomething(inputPath) {
     if (line.startsWith(' 1')) {
       break
     }
-    console.log('-> line', line)
     for (let i = 1; i <= stacksCount; i++) {
       const letter = line[1 + 4*(i-1)]?.trim()
-      console.log('letter', letter)
       if (letter) {
         stacks[i].push(letter);
       }
     }
   }
-  console.log('stacks', stacks)
+  console.log('INITIAL stacks', stacks)
 
   let instructions = ''
   for (let i = 0; i < lines.length - 1; i++) {
@@ -41,20 +38,27 @@ export function computeSomething(inputPath) {
   }
   // console.log(instructions)
 
+  let j = 0
   for (const instruction of instructions.split('\n')) {
     const words = instruction.split(' ')
+    if (words[0] === '') {
+      break
+    }
     const stackFrom = words[3]
     const stackTo = words[5]
-    const howMany = words[1]
-    // console.log('stackFrom', stackFrom)
-    // console.log('stackTo', stackTo)
-    // console.log('howMany', howMany)
+    const howMany = Number(words[1])
 
-    for (let i = 0; i < howMany; i++) {
-      const letter = stacks[stackFrom].shift()
-      stacks[stackTo].unshift(letter)
-    }
+    // --- PART ONE
+    // for (let i = 0; i < howMany; i++) {
+    //   const letter = stacks[stackFrom].shift()
+    //   stacks[stackTo].unshift(letter)
+    // }
+    // --- PART TWO
+    const removedLetters = stacks[stackFrom].splice(0, howMany);
+    stacks[stackTo].unshift(...removedLetters)
   }
+
+  console.log('FINAL stacks', stacks)
 
   let result = ''
   for (const stack of stacks) {

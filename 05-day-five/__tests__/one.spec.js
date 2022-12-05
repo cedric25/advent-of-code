@@ -23,7 +23,7 @@ describe('computeSomething', function () {
       const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).toEqual(602)
+      expect(totalScore).toEqual('GFTNRBZPF')
     })
   })
 })
