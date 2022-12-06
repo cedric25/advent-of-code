@@ -6,17 +6,17 @@ export function computeSomething(inputPath) {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
   const content = fs.readFileSync(path.join(__dirname, inputPath), 'utf-8')
 
-  for (let i = 3; i < content.length - 1; i++) {
-    const fourLetters = [
-      content[i],
-      content[i - 1],
-      content[i - 2],
-      content[i - 3],
-    ]
-    const unique = [...new Set(fourLetters)].length
-    console.log('unique', unique)
-    if (unique === 4) {
-      return i + 1
+  const forPuzzleOne = 4
+  const forPuzzleTwo = 14
+
+  // const loopInput = forPuzzleOne
+  const loopInput = forPuzzleTwo
+
+  for (let i = 0; i < content.length - 1; i++) {
+    const letters = content.substring(i, i + loopInput)
+    const unique = [...new Set(letters.split(''))].length
+    if (unique === loopInput) {
+      return i + loopInput
     }
   }
 
