@@ -8,13 +8,13 @@ export function computeSomething(inputPath) {
 
   const lines = content.split('\n')
 
-  const result = {
+  const tree = {
     key: '/',
     size: 0,
     parentPointer: null,
     children: [],
   }
-  let currentDirPointer = result
+  let currentDirPointer = tree
   for (const line of lines.slice(1)) {
     if (line === '$ cd ..') {
       currentDirPointer = currentDirPointer.parentPointer
@@ -41,14 +41,28 @@ export function computeSomething(inputPath) {
     }
   }
 
-  console.log('result', result)
+  console.log('result', tree)
   // Can't stringify an object with circular references
-  // console.log('result', JSON.stringify(result, null, 2))
+  // console.log('tree', JSON.stringify(tree, null, 2))
 
-  const totalFilesSize = getTotalFilesSize(result)
-  console.log('totalFilesSize', totalFilesSize)
+  // --- Part One
+  // const totalFilesSize = getTotalFilesSize(tree)
+  // console.log('totalFilesSize', totalFilesSize)
+  // return totalFilesSize
 
-  return totalFilesSize
+  // --- Part Two
+  const totalSpaceAvailable = 70_000_000
+  const spaceNeededForUpdate = 30_000_000
+  const usedSpace = tree.size
+  const freeSpace = totalSpaceAvailable - usedSpace // 29_427_043
+  const freeSpaceStillNeeded = spaceNeededForUpdate - freeSpace // 572_957
+
+  const candidates = findSizeOfDirectoryToDelete([], tree, freeSpaceStillNeeded)
+  console.log(
+    'candidates',
+    candidates.sort((a, b) => a - b)
+  )
+  return candidates.sort((a, b) => a - b)[0]
 }
 
 function alsoAddSizeToParent(dirPointer, size) {
@@ -71,4 +85,18 @@ function getTotalFilesSize(tree) {
     }
   }
   return sum
+}
+
+function findSizeOfDirectoryToDelete(candidates, tree, freeSpaceStillNeeded) {
+  for (const node of tree.children) {
+    if (node.key) {
+      if (node.size >= freeSpaceStillNeeded) {
+        candidates.push(node.size)
+      }
+    }
+    if (node.children) {
+      findSizeOfDirectoryToDelete(candidates, node, freeSpaceStillNeeded)
+    }
+  }
+  return candidates
 }
