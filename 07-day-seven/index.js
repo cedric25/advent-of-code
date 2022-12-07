@@ -32,7 +32,6 @@ export function computeSomething(inputPath) {
       currentDirPointer = newFolder
       continue
     }
-    // File with its size
     if (/^\d/.test(line)) {
       const [size, fileName] = line.split(' ')
       currentDirPointer.children.push({ fileName, size: Number(size) })
