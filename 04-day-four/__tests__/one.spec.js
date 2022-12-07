@@ -1,4 +1,4 @@
-import { computeSomething, getNumbersInRange, hasOverlap } from '../index.js';
+import { computeSomething, getNumbersInRange, hasOverlap } from '../index.js'
 
 describe('computeSomething', function () {
   describe('When giving an easy file', function () {
@@ -62,7 +62,7 @@ describe('hasOverlap', function () {
 
 describe('getNumbersInRange', function () {
   describe('When giving 2-4', function () {
-    it('should give 2, 3, 4', function() {
+    it('should give 2, 3, 4', function () {
       // --- WHEN
       const result = getNumbersInRange('2-4')
 

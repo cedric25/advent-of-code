@@ -1,4 +1,4 @@
-import { computeSomething, hasSomeOverlap } from '../index.js';
+import { computeSomething, hasSomeOverlap } from '../index.js'
 
 describe('computeSomething', function () {
   describe('When giving an easy file', function () {

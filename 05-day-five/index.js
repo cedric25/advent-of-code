@@ -22,9 +22,9 @@ export function computeSomething(inputPath) {
       break
     }
     for (let i = 1; i <= stacksCount; i++) {
-      const letter = line[1 + 4*(i-1)]?.trim()
+      const letter = line[1 + 4 * (i - 1)]?.trim()
       if (letter) {
-        stacks[i].push(letter);
+        stacks[i].push(letter)
       }
     }
   }
@@ -54,7 +54,7 @@ export function computeSomething(inputPath) {
     //   stacks[stackTo].unshift(letter)
     // }
     // --- PART TWO
-    const removedLetters = stacks[stackFrom].splice(0, howMany);
+    const removedLetters = stacks[stackFrom].splice(0, howMany)
     stacks[stackTo].unshift(...removedLetters)
   }
 
@@ -65,7 +65,7 @@ export function computeSomething(inputPath) {
     if (!stack[0]) {
       continue
     }
-    result += stack[0];
+    result += stack[0]
   }
   console.log('result', result)
 

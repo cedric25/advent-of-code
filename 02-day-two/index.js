@@ -51,9 +51,9 @@ export function chooseWhatToPlayAndComputeScore(roundLine) {
 }
 
 const endScore = {
-  'X': LOSE,
-  'Y': DRAW,
-  'Z': WIN,
+  X: LOSE,
+  Y: DRAW,
+  Z: WIN,
 }
 
 function findWhatToPlay(hisLetter, myLetter) {

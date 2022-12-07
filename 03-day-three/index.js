@@ -8,15 +8,15 @@ export function computeSomething(inputPath) {
   let lines = content.split('\n')
   // console.log('lines', lines)
   let sum = 0
-  for (let i = 0; i < lines.length - 1; i+=3) {
+  for (let i = 0; i < lines.length - 1; i += 3) {
     const lineOne = lines[i]
     console.log('-> lineOne', lineOne)
     if (!lineOne) {
       break
     }
-    console.log('lines[1]', lines[i+1]);
+    console.log('lines[1]', lines[i + 1])
     for (const letterOne of lineOne.split('')) {
-      if (lines[i+1].includes(letterOne) && lines[i+2].includes(letterOne)) {
+      if (lines[i + 1].includes(letterOne) && lines[i + 2].includes(letterOne)) {
         const letterScore = getLetterScore(letterOne)
         console.log('letterScore', letterScore)
         sum += letterScore

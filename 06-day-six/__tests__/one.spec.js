@@ -1,4 +1,4 @@
-import { computeSomething } from '../index.js';
+import { computeSomething } from '../index.js'
 
 describe('computeSomething', function () {
   describe('When giving an easy file', function () {
