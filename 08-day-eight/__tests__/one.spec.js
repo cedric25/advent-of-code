@@ -11,20 +11,20 @@ describe('computeSomething', function () {
       const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).to.equal(-1)
+      expect(totalScore).to.equal(21)
     })
   })
 
-  // describe('When giving the real input!', function () {
-  //   it('should get the right result', function () {
-  //     // --- GIVEN
-  //     const inputPath = './__tests__/realInput.txt'
-  //
-  //     // --- WHEN
-  //     const totalScore = computeSomething(inputPath)
-  //
-  //     // --- THEN
-  //     expect(totalScore).to.equal(1447046)
-  //   })
-  // })
+  describe('When giving the real input!', function () {
+    it('should get the right result', function () {
+      // --- GIVEN
+      const inputPath = './__tests__/realInput.txt'
+
+      // --- WHEN
+      const totalScore = computeSomething(inputPath)
+
+      // --- THEN
+      expect(totalScore).to.equal(1713)
+    })
+  })
 })
