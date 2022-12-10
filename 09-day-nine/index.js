@@ -81,87 +81,99 @@ function drawVisited(game) {
 }
 
 export function handleMoves(moves) {
-  let head = { x: 0, y: 0 }
-  let tail = { x: 0, y: 0 }
-  let visited = [{ x: 0, y: 0 }]
+  let snake = [
+    { x: 0, y: 0 }, // head
+    { x: 0, y: 0 }, // 1
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 }, // 9
+  ]
+
+  // let head = { x: 0, y: 0 }
+  // let tail = { x: 0, y: 0 }
+
+  let nineVisited = [{ x: 0, y: 0 }]
 
   for (const line of moves) {
     console.log('=====', line)
     const [direction, movesCount] = line.split(' ')
     for (let i = 0; i < movesCount; i++) {
       console.log('---')
-      head = move(head, direction)
-      // right
-      if (head.x - tail.x === 2) {
-        if (head.y < tail.y) {
-          console.log('Tail moves down ⬇')
-          tail = move(tail, down)
-        }
-        if (head.y > tail.y) {
-          console.log('Tail moves up ⬆')
-          tail = move(tail, up)
-        }
-        console.log('Tail moves right ⮕')
-        tail = move(tail, right)
-        visited = trackHaveBeenThere(visited, tail.x, tail.y)
-        // drawVisited(visited)
-        continue
-      }
-      // left
-      if (head.x - tail.x === -2) {
-        if (head.y < tail.y) {
-          console.log('Tail moves down ⬇')
-          tail = move(tail, down)
-        }
-        if (head.y > tail.y) {
-          console.log('Tail moves up ⬆')
-          tail = move(tail, up)
-        }
-        console.log('Tail moves left ⬅')
-        tail = move(tail, left)
-        visited = trackHaveBeenThere(visited, tail.x, tail.y)
-        // drawVisited(visited)
-        continue
-      }
-      // up
-      if (head.y - tail.y === 2) {
-        if (head.x < tail.x) {
-          console.log('Tail moves left ⬅')
-          tail = move(tail, left)
-        }
-        if (head.x > tail.x) {
+      const newHeadPosition = move(snake[0], direction)
+      snake[0] = newHeadPosition
+
+      for (let j = 1; j < snake.length; j++) {
+        const head = snake[j - 1]
+        let tail = snake[j]
+
+        // right
+        if (head.x - tail.x === 2) {
+          if (head.y < tail.y) {
+            console.log('Tail moves down ⬇')
+            tail = move(tail, down)
+          }
+          if (head.y > tail.y) {
+            console.log('Tail moves up ⬆')
+            tail = move(tail, up)
+          }
           console.log('Tail moves right ⮕')
           tail = move(tail, right)
         }
-        console.log('Tail moves up ⬆')
-        tail = move(tail, up)
-        visited = trackHaveBeenThere(visited, tail.x, tail.y)
-        // drawVisited(visited)
-        continue
-      }
-      // down
-      if (head.y - tail.y === -2) {
-        if (head.x < tail.x) {
+        // left
+        if (head.x - tail.x === -2) {
+          if (head.y < tail.y) {
+            console.log('Tail moves down ⬇')
+            tail = move(tail, down)
+          }
+          if (head.y > tail.y) {
+            console.log('Tail moves up ⬆')
+            tail = move(tail, up)
+          }
           console.log('Tail moves left ⬅')
           tail = move(tail, left)
         }
-        if (head.x > tail.x) {
-          console.log('Tail moves right ⮕')
-          tail = move(tail, right)
+        // up
+        if (head.y - tail.y === 2) {
+          if (head.x < tail.x) {
+            console.log('Tail moves left ⬅')
+            tail = move(tail, left)
+          }
+          if (head.x > tail.x) {
+            console.log('Tail moves right ⮕')
+            tail = move(tail, right)
+          }
+          console.log('Tail moves up ⬆')
+          tail = move(tail, up)
         }
-        console.log('Tail moves down ⬇')
-        tail = move(tail, down)
-        visited = trackHaveBeenThere(visited, tail.x, tail.y)
-        // drawVisited(visited)
-        continue
+        // down
+        if (head.y - tail.y === -2) {
+          if (head.x < tail.x) {
+            console.log('Tail moves left ⬅')
+            tail = move(tail, left)
+          }
+          if (head.x > tail.x) {
+            console.log('Tail moves right ⮕')
+            tail = move(tail, right)
+          }
+          console.log('Tail moves down ⬇')
+          tail = move(tail, down)
+        }
+        if (j === snake.length - 1) {
+          nineVisited = trackHaveBeenThere(nineVisited, tail.x, tail.y)
+        }
       }
-      console.log('Tail does not move')
+      // console.log('Tail does not move')
     }
   }
 
   return {
-    visited,
-    head,
-    tail,
+    visited: nineVisited,
+    // head,
+    // tail,
   }
 }

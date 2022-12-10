@@ -11,7 +11,20 @@ describe('computeSomething', function () {
       const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).to.equal(8)
+      expect(totalScore).to.equal(1)
+    })
+  })
+
+  describe('When giving example from part two', function () {
+    it('should get the right result', function () {
+      // --- GIVEN
+      const inputPath = './__tests__/inputSamplePartTwo.txt'
+
+      // --- WHEN
+      const totalScore = computeSomething(inputPath)
+
+      // --- THEN
+      expect(totalScore).to.equal(36)
     })
   })
 
@@ -24,7 +37,7 @@ describe('computeSomething', function () {
       const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).to.equal(268464)
+      expect(totalScore).to.equal(2367)
     })
   })
 })
