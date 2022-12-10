@@ -11,7 +11,7 @@ describe('computeSomething', function () {
       const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).to.equal(-1)
+      expect(totalScore).to.equal(13140)
     })
   })
 
@@ -24,7 +24,7 @@ describe('computeSomething', function () {
       const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).to.equal(-1)
+      expect(totalScore).to.equal(13740)
     })
   })
 })
