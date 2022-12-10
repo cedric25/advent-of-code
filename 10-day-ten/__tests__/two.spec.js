@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { computeSomething } from '../index.js'
+import { computeSomethingPartTwo } from '../index.js'
 
 describe('computeSomething', function () {
   describe('When giving an easy file', function () {
@@ -8,10 +8,17 @@ describe('computeSomething', function () {
       const inputPath = './__tests__/inputOne.txt'
 
       // --- WHEN
-      const totalScore = computeSomething(inputPath)
+      const crtScreen = computeSomethingPartTwo(inputPath)
 
       // --- THEN
-      expect(totalScore).to.equal(-1)
+      expect(crtScreen).to.equal(
+        '##..##..##..##..##..##..##..##..##..##..\n' +
+          '###...###...###...###...###...###...###.\n' +
+          '####....####....####....####....####....\n' +
+          '#####.....#####.....#####.....#####.....\n' +
+          '######......######......######......####\n' +
+          '#######.......#######.......#######.....'
+      )
     })
   })
 
@@ -21,7 +28,15 @@ describe('computeSomething', function () {
       const inputPath = './__tests__/realInput.txt'
 
       // --- WHEN
-      const totalScore = computeSomething(inputPath)
+      const totalScore = computeSomethingPartTwo(
+        '####.#..#.###..###..####.####..##..#....\n' +
+          '...#.#..#.#..#.#..#.#....#....#..#.#....\n' +
+          '..#..#..#.#..#.#..#.###..###..#....#....\n' +
+          '.##..#..#.###..###..#....#....#....#....\n' +
+          '##...#..#.#....#.#..#....#....#..#.#....\n' +
+          '####..##..#....#..#.#....####..##..####.'
+      )
+      // ZUPRFECL
 
       // --- THEN
       expect(totalScore).to.equal(-1)
