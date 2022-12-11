@@ -6,3 +6,7 @@ export function readFileTrimEnd(inputPath) {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
   return fs.readFileSync(path.join(__dirname, '../', inputPath), 'utf-8').trimEnd()
 }
+
+export function compareNumbers(a, b) {
+  return a - b
+}

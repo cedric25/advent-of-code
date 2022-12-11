@@ -1,10 +1,10 @@
-import { readFileTrimEnd } from '../../helpers/helpers.js'
+import { readFileTrimEnd, compareNumbers } from '../../helpers/helpers.js'
 
 /**
  * node ./2015/02-day-two/index.js
  */
 
-function partOne() {
+function compute() {
   const content = readFileTrimEnd('./2015/02-day-two/inputOne.txt')
 
   const lines = content.split('\n')
@@ -12,33 +12,15 @@ function partOne() {
   let sum = 0
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
-    sum += getPaperForLine(line)
+    // Part 1
+    // sum += getPaperForLine(line)
+    // Part 2
+    sum += getRibbonForPackage(line)
   }
 
-  // 1588178
+  // Part One: 1588178
+  // Part Two: 3783758
   console.log('Answer is', sum)
-}
-
-function partTwo() {
-  const content = readFileTrimEnd('./2015/01-day-one/inputOne.txt')
-
-  let answer
-  let floor = 0
-  for (let i = 0; i < content.length; i++) {
-    if (floor === -1) {
-      answer = i
-      break
-    }
-    if (content[i] === '(') {
-      floor++
-    }
-    if (content[i] === ')') {
-      floor--
-    }
-  }
-
-  // 1797
-  console.log('Answer is', answer)
 }
 
 function getPaperForLine(line) {
@@ -48,8 +30,23 @@ function getPaperForLine(line) {
   return totalSurface + areaOfSmallestSide
 }
 
+function getRibbonForPackage(line) {
+  const [min1, min2, max] = line.split('x').map(Number).sort(compareNumbers)
+  const ribbonToWrap = min1 + min1 + min2 + min2
+  const ribbonForBow = min1 * min2 * max
+  return ribbonToWrap + ribbonForBow
+}
+
 // console.log(getPaperForLine('2x3x4'))
 
-partOne()
+// console.log(getRibbonForPackage('2x3x4'))
+// console.log(getRibbonForPackage('2x5x4'))
+// console.log(getRibbonForPackage('1x1x10'))
+// console.log(getRibbonForPackage('3x11x24'))
+// 3+3+11+11 + 3*11*24 = 820
 
-// partTwo()
+// console.log(getRibbonForPackage('24x8x21'))
+// 8+8+21+21 + 24*8*21
+// 58 + 4032 = 4090
+
+compute()
