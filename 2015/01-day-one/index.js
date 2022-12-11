@@ -4,7 +4,7 @@ import { readFileTrimEnd } from '../../helpers/helpers.js'
  * node ./2015/01-day-one/index.js
  */
 
-function computeSomething() {
+function partOne() {
   const content = readFileTrimEnd('./2015/01-day-one/inputOne.txt')
 
   const up = content.replaceAll(')', '').length
@@ -14,4 +14,28 @@ function computeSomething() {
   console.log('Answer is', up - down)
 }
 
-computeSomething()
+function partTwo() {
+  const content = readFileTrimEnd('./2015/01-day-one/inputOne.txt')
+
+  let answer
+  let floor = 0
+  for (let i = 0; i < content.length; i++) {
+    if (floor === -1) {
+      answer = i
+      break
+    }
+    if (content[i] === '(') {
+      floor++
+    }
+    if (content[i] === ')') {
+      floor--
+    }
+  }
+
+  // 1797
+  console.log('Answer is', answer)
+}
+
+// partOne()
+
+partTwo()
