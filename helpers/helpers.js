@@ -10,3 +10,7 @@ export function readFileTrimEnd(inputPath) {
 export function compareNumbers(a, b) {
   return a - b
 }
+
+export function compareNumbersDesc(a, b) {
+  return b - a
+}
