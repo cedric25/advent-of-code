@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { computeSomethingPartTwo } from '../index.js'
+import { computeSomething } from '../index.js'
 
 describe('computeSomething', function () {
   describe('When giving an easy file', function () {
@@ -8,17 +8,10 @@ describe('computeSomething', function () {
       const inputPath = './__tests__/inputOne.txt'
 
       // --- WHEN
-      const crtScreen = computeSomethingPartTwo(inputPath)
+      const crtScreen = computeSomething(inputPath)
 
       // --- THEN
-      expect(crtScreen).to.equal(
-        '##..##..##..##..##..##..##..##..##..##..\n' +
-          '###...###...###...###...###...###...###.\n' +
-          '####....####....####....####....####....\n' +
-          '#####.....#####.....#####.....#####.....\n' +
-          '######......######......######......####\n' +
-          '#######.......#######.......#######.....'
-      )
+      expect(crtScreen).to.equal(2713310158)
     })
   })
 
@@ -28,18 +21,10 @@ describe('computeSomething', function () {
       const inputPath = './__tests__/realInput.txt'
 
       // --- WHEN
-      const totalScore = computeSomethingPartTwo(
-        '####.#..#.###..###..####.####..##..#....\n' +
-          '...#.#..#.#..#.#..#.#....#....#..#.#....\n' +
-          '..#..#..#.#..#.#..#.###..###..#....#....\n' +
-          '.##..#..#.###..###..#....#....#....#....\n' +
-          '##...#..#.#....#.#..#....#....#..#.#....\n' +
-          '####..##..#....#..#.#....####..##..####.'
-      )
-      // ZUPRFECL
+      const totalScore = computeSomething(inputPath)
 
       // --- THEN
-      expect(totalScore).to.equal(-1)
+      expect(totalScore).to.equal(30616425600)
     })
   })
 })

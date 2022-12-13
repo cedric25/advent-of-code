@@ -3,6 +3,9 @@ import fs from 'node:fs'
 import * as url from 'node:url'
 import { compareNumbersDesc } from '../helpers/helpers.js'
 
+// Part Two
+// Inspiration here: https://github.com/mariom100o/Advent-of-Code-Solutions/blob/main/2022/day11/part2.js
+
 export function computeSomething(inputPath) {
   const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
   const content = fs.readFileSync(path.join(__dirname, inputPath), 'utf-8').trimEnd()
@@ -11,6 +14,13 @@ export function computeSomething(inputPath) {
 
   const monkeys = getInitialState(lines)
   // console.log('initialState', monkeys)
+
+  // 13 * 17 * 19 * 23 = 96577
+  let divisor = Object.values(monkeys).reduce((acc, monkey) => {
+    console.log('monkey.divisibleBy', monkey.divisibleBy)
+    return acc * monkey.divisibleBy
+  }, 1)
+  console.log('divisor', divisor)
 
   for (let i = 0; i < 20; i++) {
     for (const monkey of Object.values(monkeys)) {
@@ -29,7 +39,19 @@ export function computeSomething(inputPath) {
             newWorryLevel = item * monkey.value
           }
         }
-        const lessWorried = Math.floor(newWorryLevel / 3)
+
+        // --- Part One
+        // const lessWorried = Math.floor(newWorryLevel / 3)
+        // --- Part Two
+        let lessWorried = newWorryLevel
+        console.log('lessWorried', lessWorried)
+
+        // Ex: having 118750
+        // divided by 96577: 1 * 96577 + 22173
+        // -> lessWorried = 22173
+        lessWorried %= divisor
+        console.log('lessWorried 2', lessWorried)
+
         if (lessWorried % monkey.divisibleBy === 0) {
           monkeys[monkey.monkeyIndexIfTrue].items.push(lessWorried)
         } else {
@@ -39,9 +61,11 @@ export function computeSomething(inputPath) {
       }
       monkey.items = []
     }
+
+    // console.log('monkeys', monkeys)
   }
 
-  // console.log('monkeys', monkeys)
+  console.log('monkeys', monkeys)
 
   const allInspected = Object.values(monkeys)
     .map(({ hasInspected }) => hasInspected)
