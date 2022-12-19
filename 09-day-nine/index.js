@@ -2,6 +2,10 @@ import path from 'node:path'
 import fs from 'node:fs'
 import * as url from 'node:url'
 
+/* -----------------
+ * ----- SNAKE -----
+ * ----------------- */
+
 const right = 'R'
 const left = 'L'
 const up = 'U'
