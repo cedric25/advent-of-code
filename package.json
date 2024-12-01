@@ -1,16 +1,10 @@
 {
   "name": "one",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "prettier:fix": "prettier . --write",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier:fix": "prettier . --write"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "chai": "4.3.7",
     "mocha": "10.1.0",
