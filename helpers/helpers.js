@@ -14,3 +14,7 @@ export function compareNumbers(a, b) {
 export function compareNumbersDesc(a, b) {
   return b - a
 }
+
+export function sortAsc(numbers) {
+  return numbers.sort(compareNumbers)
+}
