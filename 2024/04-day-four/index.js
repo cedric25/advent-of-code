@@ -77,8 +77,80 @@ function countXMAS(inputPath) {
   console.log('count', count)
 }
 
-// countXMAS('./2024/04-day-four/inputs/inputOne.txt')
-countXMAS('./2024/04-day-four/inputs/realInputOne.txt')
+// --- Star 2
 
-// countSafeReportsStarFour('./2024/04-day-four/inputs/inputOne.txt')
-// countSafeReportsStarFour('./2024/04-day-four/inputs/realInputOne.txt')
+function countCrossMAS(inputPath) {
+  const content = readFileTrimEnd(inputPath)
+  const lines = content.split('\n')
+
+  let count = 0
+
+  for (let rowIndex = 0; rowIndex < lines.length; rowIndex++) {
+    for (let colIndex = 0; colIndex < lines[rowIndex].length; colIndex++) {
+      const char = lines[rowIndex][colIndex]
+      if (char !== 'M' && char !== 'S') {
+        continue
+      }
+
+      if (char === 'M') {
+        // M.S
+        // .A.
+        // M.S
+        const isX1 =
+          lines[rowIndex]?.[colIndex + 2] === 'S' &&
+          lines[rowIndex + 1]?.[colIndex + 1] === 'A' &&
+          lines[rowIndex + 2]?.[colIndex] === 'M' &&
+          lines[rowIndex + 2]?.[colIndex + 2] === 'S'
+        if (isX1) {
+          count += 1
+        }
+
+        // M.M
+        // .A.
+        // S.S
+        const isX2 =
+          lines[rowIndex]?.[colIndex + 2] === 'M' &&
+          lines[rowIndex + 1]?.[colIndex + 1] === 'A' &&
+          lines[rowIndex + 2]?.[colIndex] === 'S' &&
+          lines[rowIndex + 2]?.[colIndex + 2] === 'S'
+        if (isX2) {
+          count += 1
+        }
+      }
+
+      if (char === 'S') {
+        // S.S
+        // .A.
+        // M.M
+        const isX3 =
+          lines[rowIndex]?.[colIndex + 2] === 'S' &&
+          lines[rowIndex + 1]?.[colIndex + 1] === 'A' &&
+          lines[rowIndex + 2]?.[colIndex] === 'M' &&
+          lines[rowIndex + 2]?.[colIndex + 2] === 'M'
+        if (isX3) {
+          count += 1
+        }
+
+        // S.M
+        // .A.
+        // S.M
+        const isX4 =
+          lines[rowIndex]?.[colIndex + 2] === 'M' &&
+          lines[rowIndex + 1]?.[colIndex + 1] === 'A' &&
+          lines[rowIndex + 2]?.[colIndex] === 'S' &&
+          lines[rowIndex + 2]?.[colIndex + 2] === 'M'
+        if (isX4) {
+          count += 1
+        }
+      }
+    }
+  }
+
+  console.log('count', count)
+}
+
+// countXMAS('./2024/04-day-four/inputs/inputOne.txt')
+// countXMAS('./2024/04-day-four/inputs/realInputOne.txt')
+
+// countCrossMAS('./2024/04-day-four/inputs/inputOne.txt')
+countCrossMAS('./2024/04-day-four/inputs/realInputOne.txt')
