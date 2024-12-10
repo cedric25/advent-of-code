@@ -18,3 +18,7 @@ export function compareNumbersDesc(a, b) {
 export function sortAsc(numbers) {
   return numbers.sort(compareNumbers)
 }
+
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
